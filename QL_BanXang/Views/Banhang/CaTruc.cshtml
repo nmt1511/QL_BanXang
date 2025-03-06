@@ -1,0 +1,46 @@
+﻿@model IEnumerable<QL_BanXang.Models.CATRUC>
+
+@{
+    ViewBag.Title = "CaTruc";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>CaTruc</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenCaTruc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioBatDau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioKetThuc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenCaTruc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioBatDau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioKetThuc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaCaTruc }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaCaTruc }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaCaTruc })
+        </td>
+    </tr>
+}
+
+</table>

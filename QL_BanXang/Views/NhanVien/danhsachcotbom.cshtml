@@ -1,0 +1,27 @@
+﻿@model IEnumerable<QL_BanXang.Models.COTBOMXANG>
+
+@{
+    ViewBag.Title = "Danh sách cốt bơm";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Danh sách cột bơm</h2>
+<p>
+    @Html.ActionLink("Thêm Phiếu bán hàng", "Themphieubanhang", null, new { @class = "btn btn-primary" })
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Loại nhiên liệu: @Html.DisplayFor(modelItem => item.LoaiNhienlieu)</h5>
+                    <!--            <p class="card-text">Trạng thái hoạt động: @Html.DisplayFor(modelItem => item.Tthoatdong)</p>
+        <p class="card-text">Ngày cập nhật: @Html.DisplayFor(modelItem => item.NgayCapNhatTT)</p> -->
+                    <a href="@Url.Action("suacot", new { id = item.MaCot })" class="btn btn-info"><i class="fas fa-edit"></i> Cập nhật thông tin</a>
+                </div>
+                </div>
+            </div>
+        }
+    </div>

@@ -1,0 +1,51 @@
+﻿@model QL_BanXang.Models.CTPHIEUNHAP
+
+@{
+    ViewBag.Title = "ChiTietPN";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #36d1dc, #5b86e5);
+        color: #ffffff;
+    }
+
+    .dl-horizontal dt {
+        float: left;
+        width: 160px;
+        overflow: hidden;
+        clear: left;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+
+    .container-fluid {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .btn {
+        color: #fff;
+    }
+</style>
+
+<h2 class="text-center text-primary my-5">Chi Tiết Phiếu Nhập</h2>
+
+<div class="container-fluid">
+    <hr />
+    <dl class="dl-horizontal">
+        <!-- Remaining code... -->
+    </dl>
+
+    <div class="text-center mt-4">
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "btn btn-warning mx-2" })
+        @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-dark mx-2" })
+    </div>
+</div>

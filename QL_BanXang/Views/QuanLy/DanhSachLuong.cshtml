@@ -1,0 +1,40 @@
+﻿@model IEnumerable<QL_BanXang.Models.LUONG>
+@{
+    ViewBag.Title = "DanhSachLuong";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Danh sách lương của các tháng trong năm</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tháng</th>
+            <th>Số ca sáng</th>
+            <th>Số ca tối</th>
+            <th>Tổng lương theo ca</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var luong in Model)
+        {
+            <tr>
+                <td>@luong.NgayTinh.Value.Month</td>
+                <td>@luong.SoCaSang</td>
+                <td>@luong.SoCaToi</td>
+                <td>@string.Format("{0:#,##0}", luong.TongLuongTheoCa)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    int maNV = ViewBag.MaNV ?? 0; // Lấy MaNV từ ViewBag
+}
+
+@if (maNV != 0)
+{
+    <!-- Nút tính lương cho tháng mới -->
+    <a href="@Url.Action("TinhLuong", "QuanLy", new { idNV = maNV })" class="btn btn-primary">Tính lương tháng mới</a>
+}
+

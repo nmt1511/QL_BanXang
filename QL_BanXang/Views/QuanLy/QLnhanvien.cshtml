@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QL_BanXang.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "QLnhanvien";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2 style="align-content:center">Quản Lý Nhân Viên</h2>
+
+<p>
+    <a href="~/QuanLy/ThemUser" class="btn btn-primary">Thêm Mới</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().USER.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().TenNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().GioiTinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().NgSinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Sdt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Luong)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USER.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgSinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Luong)
+                </td>
+                <td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaTTNV", new { manv = item.MaNV }, new { @class="btn btn-primary btn-sm"}) |
+                    @Html.ActionLink("Xóa", "XoaNV", new { manv = item.MaNV}, new { @class= "btn btn-danger btn-sm"})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

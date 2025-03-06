@@ -1,0 +1,41 @@
+﻿@model IEnumerable<QL_BanXang.Models.CHITIETNGAYLAM>
+
+@{
+    ViewBag.Title = "GioLamNV";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Thông tin giờ làm</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayLam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CATRUC.TenCaTruc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHANVIEN.TenNV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayLam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATRUC.TenCaTruc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHANVIEN.TenNV)
+        </td>
+        <td>
+            @Html.ActionLink("Chi Tiết", "ChiTietNgayLam", new { maNV = item.MaNV, ngayLam = item.NgayLam }, new { @class = "btn btn-primary btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

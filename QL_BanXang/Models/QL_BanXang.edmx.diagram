@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10dbe15656584210a315c852bc86f8b6" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_CayXangModel.CATRUC" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.CHITIETNGAYLAM" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.COTBOMXANG" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.CTPHIEUBAN" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.CTPHIEUNHAP" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.HANGHOA" Width="1.5" PointX="8.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.LOAIHANG" Width="1.5" PointX="6" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.LUONG" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.NHACUNGCAP" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.NHANVIEN" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.PHIEUBAN" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.PHIEUNHAP" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.PHUCAP" Width="1.5" PointX="8.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.QUANLY" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.QUYCACH" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.sysdiagram" Width="1.5" PointX="10.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CayXangModel.USER" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="QL_CayXangModel.FK__CHITIETNG__MaCaT__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__CHITIETNGA__MaNV__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK_CHITIETNGAYLAM_COTBOMXANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__CTPHIEUBAN__MaHH__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__CTPHIEUBAN__MaPB__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK_CTPB_QC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__CTPHIEUNHA__MaHH__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__CTPHIEUNHA__MaPN__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK_CTPN_QC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__HANGHOA__MaLoai__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__LUONG__MaNV__56E8E7AB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__PHIEUNHAP__MaNCC__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__NHANVIEN__ID__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__PHIEUBAN__MaNV__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__PHIEUNHAP__MaNV__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CayXangModel.FK__QUANLY__ID__1CBC4616" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QL_CayXangModel.CTGIA" Width="1.5" PointX="10.5" PointY="11.5" />
+        <AssociationConnector Association="QL_CayXangModel.FK_CTGIA_HANGHOA" />
+        <AssociationConnector Association="QL_CayXangModel.FK_CTGIA_QUYCACH" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

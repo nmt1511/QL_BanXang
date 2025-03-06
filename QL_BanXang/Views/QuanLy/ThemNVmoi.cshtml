@@ -1,0 +1,88 @@
+﻿@model QL_BanXang.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "ThemNVmoi";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Thêm Thông Tin Tài Khoản Nhân Viên</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <form class="text-center">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TenNV, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control ml-2" } })
+                                    @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(model => model.GioiTinh, "Nam", new { @class = "form-control" }) Nam
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(model => model.GioiTinh, "Nữ", new { @class = "form-control" }) Nữ
+                                    </label>
+                                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NgSinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control datepicker" id="NgSinh" name="NgSinh" />
+                                    @Html.ValidationMessageFor(model => model.NgSinh, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Sdt, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Sdt, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Sdt, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Luong, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Luong, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Luong, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </form>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Lưu</button>
+                        </div>
+
+                    }
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="text-center">
+                        @Html.ActionLink("Trở Lại", "QLUser", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+

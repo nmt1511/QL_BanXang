@@ -1,0 +1,89 @@
+﻿@model IEnumerable<QL_BanXang.Models.CTGIA>
+
+@{
+    ViewBag.Title = "TonKho";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #36d1dc, #5b86e5);
+    }
+
+    .table {
+        background-color: #fff;
+    }
+
+        .table th, .table td {
+            color: #000;
+        }
+
+    .btn-light {
+        background-color: #28a745;
+        color: #fff;
+        position: absolute;
+        top: 150px;
+        right: 0;
+    }
+</style>
+
+<h2 class="text-center text-primary my-5">Sản Phẩm Tồn Kho</h2>
+
+<div class="mb-4">
+    @Html.ActionLink("Xuất Excel", "ExportToExcel", null, new { @class = "btn btn-light" })
+</div>
+
+<div class="container mt-5">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>
+                        Tên
+                    </th>
+                    <th>
+                        Quy Cách
+                    </th>
+                    <th>
+                        Loại
+                    </th>
+                    <th>
+                        Giá Nhập
+                    </th>
+                    <th>
+                        Giá Bán
+                    </th>
+                    <th>
+                        Số Lượng Tồn
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HANGHOA.Ten)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QUYCACH.TenQC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HANGHOA.LOAIHANG.TenLoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiaNhap)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiaBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SLton)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QL_BanXang.Models.HANGHOA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+<h2 class="text-center text-primary">Sản Phẩm</h2>
+
+<div class="container mt-5">
+    <p>
+        <a href="@Url.Action("ThemSP")" class="btn btn-primary btn-sm">Thêm Sản Phẩm</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Mã Hàng Hóa
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Mã Loại
+            </th>
+            <th>
+                Mô Tả
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mota)
+                </td>
+                <td>
+
+                    <div class="btn-group" role="group">
+                        <a href="@Url.Action("Details", new { id = item.MaHH })" class="btn btn-info btn-sm">Chi tiết</a>
+                        <a href="@Url.Action("XoaSP", new { id = item.MaHH })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">Xóa</a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<QL_BanXang.Models.CTPHIEUNHAP>
+
+@{
+    ViewBag.Title = "ChiTietPhieuNhap";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #36d1dc, #5b86e5);
+        color: #ffffff;
+    }
+
+    .container-fluid {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        color: #000;
+    }
+
+    .table {
+        color: #000;
+    }
+
+    .btn-primary {
+        background-color: #5b86e5;
+    }
+</style>
+
+<h2 class="text-center text-primary">Chi Tiết Phiếu Nhập</h2>
+
+<div class="container mt-5">
+    <div class="row justify-content-between">
+        <div class="col">
+            <p>
+                @Html.ActionLink("Thêm Sản Phẩm Nhập Hàng", "ThemSPPN", new { mapn = @ViewBag.PN }, new { @class = "btn btn-primary" })
+            </p>
+        </div>
+        <div class="col-auto">
+            <p>
+                <a href="@Url.Action("PhieuNhap")" class="btn btn-secondary">Quay Lại</a>
+            </p>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Tên Hàng Hóa
+            </th>
+            <th>
+                Quy Cách
+            </th>
+            <th>
+                Số Lượng
+            </th>
+            <th>
+                Giá Nhập
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HANGHOA.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QUYCACH.TenQC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaNhap)
+                </td>
+
+            </tr>
+        }
+
+    </table>

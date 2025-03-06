@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<style>
+    .containn {
+        height: 1000px;
+    }
+
+    .table-responsive {
+        max-height: 250px; /* Đặt chiều cao tối đa cho table-responsive */
+        overflow-y: auto; /* Hiển thị thanh cuộn dọc khi nội dung vượt quá chiều cao */
+    }
+</style>
+<div class="containn">
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Doanh Thu Hôm Nay</p>
+                        <h6 class="mb-0">@String.Format("{0:#,##0}", ViewBag.DoanhThu) VND</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Tổng Hàng Bán Lẻ Hôm Nay</p>
+                        <h6 class="mb-0">@ViewBag.TongHang</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-area fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Tổng Đơn Hàng</p>
+                        <h6 class="mb-0">@ViewBag.tongDonHang2</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Tổng Doanh Thu</p>
+                        <h6 class="mb-0">@String.Format("{0:#,##0}", ViewBag.tongDoanhThu) VNĐ</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Doanh thu tháng</h6>
+                        <div class="input-group" style="width:150px">
+                            <input type="text" class="form-control" id="selectedMonth" style="max-width:80px" placeholder="Nhập tháng">
+                            <button class="btn btn-primary" id="btnTKthang">Lọc</button>
+                        </div>
+                        <a href="#chitietTK">Show Details</a>
+                    </div>
+                    <canvas id="worldwide-sales"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid pt-4 px-4" id="chitietTK">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Doanh thu trong tháng <span id="selectedMonthText"></span></h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ngày</th>
+                                    <th scope="col">Doanh thu</th>
+                                    <th scope="col">Lợi nhuận</th>
+                                </tr>
+                            </thead>
+                            <tbody id="load_data_thang"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/lib/chart/chart.min.js"></script>
+    <script src="~/Content/lib/tempusdominus/js/moment.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var arrDoanhThu = [];
+            var arrLoiNhuan = [];
+            var arrDate = [];
+            var currentChart;
+
+            function loadChart(month) {
+                arrDoanhThu = [];
+                arrLoiNhuan = [];
+                arrDate = [];
+
+                $.ajax({
+                    url: '/QuanLy/TKDoanhThuThang',
+                    type: 'GET',
+                    data: { month: month },
+                    success: function (rs) {
+                        $.each(rs.Data, function (i, item) {
+                            var strDate = moment(item.Date).format('DD');
+                            arrDate.push(strDate);
+                            arrDoanhThu.push(item.DoanhThu);
+                            arrLoiNhuan.push(item.LoiNhuan);
+                        });
+
+                        updateChart();
+                        load_data_thang(rs.Data)
+                    }
+                });
+                $('#selectedMonthText').text(`${month}`);
+            }
+
+            function updateChart() {
+                var areaChartData = {
+                    labels: arrDate,
+                    datasets: [{
+                        label: "Doanh thu",
+                        data: arrDoanhThu,
+                        backgroundColor: "rgba(34, 177, 76, 0.5)",
+                        fill: true
+                    },
+                    {
+                        label: "Lợi nhuận",
+                        data: arrLoiNhuan,
+                        backgroundColor: "rgba(0, 155, 255, .3)",
+                        fill: true
+                    }]
+                };
+
+                if (currentChart) {
+                    currentChart.destroy(); // Hủy biểu đồ hiện tại trước khi vẽ lại
+                }
+
+                var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
+                currentChart = new Chart(ctx1, {
+                    type: "bar",
+                    data: areaChartData,
+                    options: barChartOptions
+                });
+            }
+
+            var barChartOptions = {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        min: 0,
+                        ticks: {
+                            stepSize: 5000000
+                        }
+                    }
+                },
+                datasetFill: false,
+                onHover: null,  // Tắt sự kiện hover mặc định
+                plugins: {
+                    tooltip: {
+                        enabled: false
+                    },
+                    legend: {
+                        display: true,
+                    },
+                }
+            };
+
+            var currentMonth = new Date().getMonth() + 1;
+            $('#selectedMonth').val(currentMonth);
+            loadChart(currentMonth);
+
+            $('#btnTKthang').on('click', function () {
+                var selectedMonth = $('#selectedMonth').val();
+                loadChart(selectedMonth);
+            });
+        });
+
+        function formatCurrency(number) {
+            return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        function load_data_thang(data) {
+            var strHtml = "";
+            $.each(data, function (i, item) {
+                var strDate = moment(item.Date).format('DD/MM');
+                strHtml += "<tr>";
+                strHtml += "<td>" + (i + 1) + "</td>";
+                strHtml += "<td>" + strDate + "</td>";
+                strHtml += "<td>" + formatCurrency(item.DoanhThu) + "</td>";
+                strHtml += "<td>" + formatCurrency(item.LoiNhuan) + "</td>";
+                strHtml += "</tr>";
+            });
+            $('#load_data_thang').html(strHtml);
+        }
+
+    </script>
+}
+
+

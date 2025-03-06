@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QL_BanXang.Models.NHACUNGCAP>
+
+@{
+    ViewBag.Title = "Danh sách Nhà Cung Cấp";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Danh sách Nhà Cung Cấp</h2>
+
+<p>
+    @Html.ActionLink("Tạo Mới", "Themnhacungcap", null, new { @class = "btn btn-success" })
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNCC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNCC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sdt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh Sửa", "Suanhacungcap", new { id = item.MaNCC }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Xóa", "Xoanhacungcap", new { id = item.MaNCC }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

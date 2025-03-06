@@ -1,0 +1,84 @@
+﻿@model QL_BanXang.Models.HANGHOA
+
+@{
+    ViewBag.Title = "XoaSP";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #36d1dc, #5b86e5);
+        color: #ffffff;
+    }
+
+    .dl-horizontal dt {
+        color: #5b86e5;
+    }
+
+    .dl-horizontal dd {
+        color: #36d1dc;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+    }
+
+    .btn-secondary {
+        background-color: #36d1dc;
+    }
+</style>
+
+<h2 class="text-center text-primary">Xoá Sản Phẩm</h2>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Mã Hàng Hóa
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaHH)
+                </dd>
+
+                <dt>
+                    Tên
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ten)
+                </dd>
+
+                <dt>
+                    Mã Loại
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaLoai)
+                </dd>
+
+                <dt>
+                    Mô Tả
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Mota)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color mt-3">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Quay Lại</a>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

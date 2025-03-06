@@ -1,0 +1,36 @@
+﻿@model List<QL_BanXang.Models.CHITIETNGAYLAM>
+
+@{
+    ViewBag.Title = "Chi tiết ngày làm";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Chi tiết ngày làm</h2>
+
+@foreach (var chiTiet in Model)
+{
+    <p>
+        Ngày làm: @chiTiet.NgayLam.ToShortDateString() <br />
+        Ca làm việc: @chiTiet.MaCaTruc <br />
+        <!-- Hiển thị bảng 1: thông tin bơm -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã cột</th>
+                    <th>Chỉ số đầu</th>
+                    <th>Chỉ số cuối</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@chiTiet.MaCot</td>
+                    <td>@chiTiet.ChiSoDau</td>
+                    <td>@chiTiet.ChiSoCuoi</td>
+                </tr>
+            </tbody>
+        </table>
+        @Html.Action("SPtheoCa", "QuanLy", new {maNV=chiTiet.MaNV, NgayLam=chiTiet.NgayLam})
+        <!-- Hiển thị bảng 2: danh sách hàng hóa -->
+        <br />
+    </p>
+}

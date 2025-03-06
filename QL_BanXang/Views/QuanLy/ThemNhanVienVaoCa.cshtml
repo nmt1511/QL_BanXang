@@ -1,0 +1,60 @@
+﻿@model QL_BanXang.Models.CHITIETNGAYLAM
+
+@{
+    ViewBag.Title = "Thêm Nhân Viên Vào Ca Trực";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Thêm Nhân Viên Vào Ca Trực</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaCaTruc, "Mã Ca Trực", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaCaTruc", ViewData["MaCaTruc"] as SelectList, "Chọn Ca Trực", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaCaTruc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNV, "Mã Nhân Viên", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaNV", ViewData["MaNV"] as SelectList, "Chọn Nhân Viên", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayLam, "Ngày Làm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NgayLam, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NgayLam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaCot, "Mã Cột Xăng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaCot", ViewData["MaCot"] as SelectList, "Chọn Cột Xăng", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaCot, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về Danh Sách", "Index", null, new { @class = "btn btn-default" })
+</div>

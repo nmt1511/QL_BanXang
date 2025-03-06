@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QL_BanXang.Models.CATRUC>
+
+@{
+    ViewBag.Title = "Danh sách ca trực";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Danh sách ca trực</h2>
+
+<p>
+    @Html.ActionLink("Thêm ca trực", "ThemCaTruc", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Thêm nhân viên vào ca trực", "ThemNhanVienVaoCa", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên ca trực
+            </th>
+            <th>
+                Giờ bắt đầu
+            </th>
+            <th>
+                Giờ kết thúc
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenCaTruc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioBatDau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioKetThuc)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Suacatruc", new { id = item.MaCaTruc }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "Xoacatruc", new { id = item.MaCaTruc }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

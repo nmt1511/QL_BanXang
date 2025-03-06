@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- Coding by CodingLab || www.codinglabweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Cây Xăng</title>
+    <link href="~/Content/login/style.css" rel="stylesheet" />
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+    <!-- Home -->
+    <section class="home">
+        <div class="form_container">
+            <!-- Login From -->
+            <div class="form login_form">
+                <form action="#" method="post">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
+                        <h2>Login</h2>
+                        <div class="input_box">
+                            <input type="text" name= "username" placeholder="Enter your username" required />
+                            <i class="uil uil-envelope-alt email"></i>
+                        </div>
+                        <div class="input_box">
+                            <input type="password" name="password" placeholder="Enter your password" required />
+                            <i class="uil uil-lock password"></i>
+                        </div>
+
+                        <div class="option_field">
+                            <a href="#" class="forgot_pw">Forgot password?</a>
+                        </div>
+
+                        <button class="button">Login Now</button>
+
+                    }
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+          const home = document.querySelector(".home"),
+          pwShowHide = document.querySelectorAll(".pw_hide");
+
+        setTimeout(() => {
+          home.classList.add("show");
+        }, 2000);
+
+        pwShowHide.forEach((icon) => {
+          icon.addEventListener("click", () => {
+            let getPwInput = icon.parentElement.querySelector("input");
+            if (getPwInput.type === "password") {
+              getPwInput.type = "text";
+              icon.classList.replace("uil-eye-slash", "uil-eye");
+            } else {
+              getPwInput.type = "password";
+              icon.classList.replace("uil-eye", "uil-eye-slash");
+            }
+          });
+        });
+    </script>
+</body>
+</html>
+

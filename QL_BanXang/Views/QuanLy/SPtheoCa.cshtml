@@ -1,0 +1,30 @@
+﻿@model IEnumerable<QL_BanXang.Models.CTPHIEUBAN>
+@{
+    Layout = null; // Không sử dụng Layout của View gọi nó
+}
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Tên sản phẩm</th>
+        <th>Quy cách</th>
+        <th>Giá</th>
+        <th>Số Lượng</th>
+        <th>Thành tiền</th>
+    </tr>
+    @if (Model != null)
+    {
+        var i = 0;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@(i+1)</td>
+                <td>@(item.HANGHOA != null ? item.HANGHOA.Ten : "")</td>
+                <td>@(item.QUYCACH != null ? item.QUYCACH.TenQC : "")</td>
+                <td>@item.DonGia</td>
+                <td>@item.SoLuong</td>
+                <td>@(item.SoLuong * item.DonGia)</td>
+            </tr>
+            i++;
+        }
+    }
+</table>
